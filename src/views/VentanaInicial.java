@@ -13,6 +13,8 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.rmi.Naming;
+import java.rmi.RemoteException;
 import java.awt.event.ActionEvent;
 
 public class VentanaInicial extends JFrame {
@@ -38,10 +40,26 @@ public class VentanaInicial extends JFrame {
 	
 	public VentanaInicial()
 	{
+		
+		if(getStub())
+		{
 		//sisCin = SistemaCine.getInstance();
 		iniciarVentanaInicial();
+		}
 	}
 
+    public boolean getStub() {
+    	
+    	try {
+			sisCin = (TDASistemaCine)Naming.lookup ("//192.168.157.101/SistemaCine");
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+    }
+	
+	
 	/**
 	 * Create the frame.
 	 */
@@ -60,8 +78,14 @@ public class VentanaInicial extends JFrame {
 			{
 				if(sisCin != null)
 				{
-					//RegistrarVenta reg = new RegistrarVenta(sisCin);
-					//reg.setVisible(true);
+					RegistrarVenta reg;
+					try {
+						reg = new RegistrarVenta(sisCin);
+						reg.setVisible(true);
+					} catch (RemoteException e) 
+					{
+						e.printStackTrace();
+					}	
 		//			dispose();
 				}
 				else
