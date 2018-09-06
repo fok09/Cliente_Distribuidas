@@ -29,6 +29,10 @@ import java.awt.Color;
 
 public class RegistrarVenta extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private TDASistemaCine sisCin;
 	private JPanel contentPane;
 	private JTable tproductos;
