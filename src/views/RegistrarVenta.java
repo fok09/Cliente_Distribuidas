@@ -27,11 +27,8 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.Color;
 
-public class RegistrarVenta extends JFrame {
-
-	/**
-	 * 
-	 */
+public class RegistrarVenta extends JFrame 
+{
 	private static final long serialVersionUID = 1L;
 	private TDASistemaCine sisCin;
 	private JPanel contentPane;
@@ -42,9 +39,7 @@ public class RegistrarVenta extends JFrame {
 	private VentaView venta;
 	private Vector<String> columnNames;
 	private JTextField txtTotal;
-	/**
-	 * Launch the application.
-	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -56,10 +51,7 @@ public class RegistrarVenta extends JFrame {
 				}
 			}
 		});
-	}
-	
-	
-	
+	}	
 	
 	public RegistrarVenta()
 	{
@@ -90,14 +82,10 @@ public class RegistrarVenta extends JFrame {
 	public void actualizarTabla() throws RemoteException
 	{
 		venta = sisCin.actualizarVistaVenta();
-	//	System.out.println(venta.getItems().elementAt(0).);
 		datosTabla = venta.getItems();
 		modeloTabla.setDataVector(datosTabla, columnNames);
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public void iniciarRegistrarVenta() {
 		setTitle("Registrar Venta");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);//JFrame.EXIT_ON_CLOSE);
@@ -106,7 +94,6 @@ public class RegistrarVenta extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 
-		
 		JScrollPane scrollPane = new JScrollPane();
 		
 		JButton btnAgregarProducto = new JButton("Agregar Producto");
@@ -197,9 +184,7 @@ public class RegistrarVenta extends JFrame {
 		tproductos = new JTable();
 		scrollPane.setViewportView(tproductos);
 		contentPane.setLayout(gl_contentPane);
-		
 		tproductos.setModel(new DefaultTableModel(datosTabla, columnNames));
 		modeloTabla = (DefaultTableModel) tproductos.getModel();
-		
 	}
 }

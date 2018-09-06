@@ -17,18 +17,12 @@ import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.awt.event.ActionEvent;
 
-public class VentanaInicial extends JFrame {
-
-	/**
-	 * 
-	 */
+public class VentanaInicial extends JFrame 
+{
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private TDASistemaCine sisCin;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -44,18 +38,18 @@ public class VentanaInicial extends JFrame {
 	
 	public VentanaInicial()
 	{
-		//iniciarVentanaInicial();
-		//sisCin = SistemaCine.getInstance();
 		if(getStub())
 		{
-		iniciarVentanaInicial();
+			iniciarVentanaInicial();
 		}
 	}
 
-    public boolean getStub() {
-    	
-    	try {
+    public boolean getStub() 
+    {	
+    	try 
+    	{
 			sisCin = (TDASistemaCine)Naming.lookup ("//localhost/SistemaCine");
+			//sisCin = (TDASistemaCine)Naming.lookup ("//192.168.157.101/SistemaCine");
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -63,11 +57,8 @@ public class VentanaInicial extends JFrame {
 		return false;
     }
 	
-	
-	/**
-	 * Create the frame.
-	 */
-	public void iniciarVentanaInicial() {
+	public void iniciarVentanaInicial()
+	{
 		setTitle("Inicio");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 385, 300);
@@ -83,14 +74,14 @@ public class VentanaInicial extends JFrame {
 				if(sisCin != null)
 				{
 					RegistrarVenta reg;
-					try {
+					try 
+					{
 						reg = new RegistrarVenta(sisCin);
 						reg.setVisible(true);
 					} catch (RemoteException e) 
 					{
 						e.printStackTrace();
-					}	
-		//			dispose();
+					}
 				}
 			}
 		});
@@ -104,11 +95,10 @@ public class VentanaInicial extends JFrame {
 				try {
 					va = new VentasAnteriores(sisCin);
 					va.setVisible(true);
-				} catch (RemoteException e) {
-					// TODO Auto-generated catch block
+				} catch (RemoteException e)
+				{
 					e.printStackTrace();
 				}
-				
 			}
 		});
 		
@@ -121,12 +111,12 @@ public class VentanaInicial extends JFrame {
 				try {
 					lp = new ListadoProductos(sisCin);
 					lp.setVisible(true);
-				} catch (RemoteException e) {
-					// TODO Auto-generated catch block
+				} catch (RemoteException e) 
+				{
 					e.printStackTrace();
 				}
 			}
-		});
+		});	
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)

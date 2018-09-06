@@ -22,8 +22,8 @@ import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
 import java.awt.event.ActionEvent;
 
-public class VentasAnteriores extends JFrame {
-
+public class VentasAnteriores extends JFrame 
+{
 	private JPanel contentPane;
 	private JTable table;
 	private TDASistemaCine sisCin;
@@ -31,9 +31,6 @@ public class VentasAnteriores extends JFrame {
 	private Vector<Vector<String>> datosTabla;
 	private Vector<String> columnNames;
 	
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -46,7 +43,6 @@ public class VentasAnteriores extends JFrame {
 			}
 		});
 	}
-	
 	
 	public VentasAnteriores()
 	{
@@ -63,13 +59,7 @@ public class VentasAnteriores extends JFrame {
 	    datosTabla = sisCin.getVentasAnteriores();
 		iniciarVentasAnteriores();
 	}
-	
-	
-	
 
-	/**
-	 * Create the frame.
-	 */
 	private void iniciarVentasAnteriores() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 557, 347);

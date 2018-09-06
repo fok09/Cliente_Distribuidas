@@ -24,8 +24,8 @@ import java.rmi.RemoteException;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
 
-public class AgregarProducto extends JFrame {
-
+public class AgregarProducto extends JFrame
+{
 	private JPanel contentPane;
 	private JTextField txtCantidad;
 	private JTextField txtPrecio;
@@ -33,9 +33,6 @@ public class AgregarProducto extends JFrame {
 	private RegistrarVenta ref;
 	private ProductoView prod;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -60,12 +57,7 @@ public class AgregarProducto extends JFrame {
 		ref = r;
 		iniciarAgregarProducto();
 	}
-	
-	
 
-	/**
-	 * Create the frame.
-	 */
 	public void iniciarAgregarProducto() {
 		setTitle("Agregar Producto");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -78,8 +70,6 @@ public class AgregarProducto extends JFrame {
 		
 		JComboBox cbTipoProducto = new JComboBox();
 		JComboBox cbProducto = new JComboBox();
-
-
 		cbTipoProducto.addItem("Entradas");
 		cbTipoProducto.addItem("Adicionales");
 		cbTipoProducto.addItem("Combos Promocionales");
@@ -140,7 +130,6 @@ public class AgregarProducto extends JFrame {
 				if(cbProducto.getSelectedItem() != null && cbTipoProducto.getSelectedItem() != null)
 				{
 					String seleccion = cbProducto.getSelectedItem().toString();
-					//System.out.println(seleccion.substring(0,seleccion.indexOf(" ")));
 					int cod = Integer.parseInt(seleccion.substring(0,seleccion.indexOf(" ")));
 					try 
 					{
@@ -152,15 +141,10 @@ public class AgregarProducto extends JFrame {
 					txtPrecio.setText(prod.getPrecio().toString());
 					
 				}		
-				//else
-				//	System.out.println("no hay seleccion");
 			}
 		});
 		
-		
 		JLabel lblProducto = new JLabel("Producto:");
-		
-		
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() 
 		{
@@ -185,17 +169,12 @@ public class AgregarProducto extends JFrame {
 			        {
 			        	JOptionPane.showMessageDialog(null,"Ingrese cantidad");
 			        }
-
-	//			float total = sisCin.registrarVenta();
-	//			JOptionPane.showMessageDialog(null,total);
 			}
 		});
 		
 		JLabel lblCantidad = new JLabel("Cantidad:");
-		
 		txtCantidad = new JTextField();
 		txtCantidad.setColumns(10);
-		
 		JLabel lblPrecio = new JLabel("Precio:");
 		
 		txtPrecio = new JTextField();
