@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-import app.SistemaCine;
+import tda.TDASistemaCine;
 import bean.ProductoView;
 import bean.VentaView;
 
@@ -21,6 +21,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -28,7 +29,7 @@ import java.awt.Color;
 
 public class RegistrarVenta extends JFrame {
 
-	private SistemaCine sisCin;
+	private TDASistemaCine sisCin;
 	private JPanel contentPane;
 	private JTable tproductos;
 	private DefaultTableModel modeloTabla;
@@ -61,7 +62,7 @@ public class RegistrarVenta extends JFrame {
 		iniciarRegistrarVenta();
 	}
 	
-	public RegistrarVenta(SistemaCine sc)
+	public RegistrarVenta(TDASistemaCine sc) throws RemoteException
 	{
 		sisCin = sc;
 		autoRef = this;
@@ -75,14 +76,14 @@ public class RegistrarVenta extends JFrame {
 		iniciarRegistrarVenta();
 	}
 	
-	public void agregarItemVenta(ProductoView prod, int cantidad)
+	public void agregarItemVenta(ProductoView prod, int cantidad) throws RemoteException
 	{
 		sisCin.agregarProducto(prod,cantidad);
 		actualizarTabla();
 		txtTotal.setText(String.valueOf(sisCin.totalVenta()));
 	}
 	
-	public void actualizarTabla()
+	public void actualizarTabla() throws RemoteException
 	{
 		venta = sisCin.actualizarVistaVenta();
 	//	System.out.println(venta.getItems().elementAt(0).);
@@ -121,7 +122,13 @@ public class RegistrarVenta extends JFrame {
 		{
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				float total = sisCin.registrarVenta();
+				float total = 0;
+				try {
+					total = sisCin.registrarVenta();
+				} catch (RemoteException e) 
+				{
+					e.printStackTrace();
+				}
 				JOptionPane.showMessageDialog(null, total);
 				VentanaInicial vi = new VentanaInicial();
 				vi.setVisible(true);

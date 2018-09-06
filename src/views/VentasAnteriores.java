@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import app.SistemaCine;
+import tda.TDASistemaCine;
 import bean.VentaView;
 
 import javax.swing.GroupLayout;
@@ -21,13 +21,14 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 import java.awt.event.ActionEvent;
 
 public class VentasAnteriores extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
-	private SistemaCine sisCin;
+	private TDASistemaCine sisCin;
 	private DefaultTableModel modeloTabla;
 	private Vector<Vector<String>> datosTabla;
 	private Vector<String> columnNames;
@@ -54,7 +55,7 @@ public class VentasAnteriores extends JFrame {
 		iniciarVentasAnteriores();
 	}
 	
-	public VentasAnteriores(SistemaCine sc)
+	public VentasAnteriores(TDASistemaCine sc) throws RemoteException
 	{
 		this.sisCin = sc;
 		columnNames = new Vector<String>();

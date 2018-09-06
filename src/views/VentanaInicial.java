@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import app.SistemaCine;
+import tda.TDASistemaCine;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -18,7 +18,7 @@ import java.awt.event.ActionEvent;
 public class VentanaInicial extends JFrame {
 
 	private JPanel contentPane;
-	private SistemaCine sisCin;
+	private TDASistemaCine sisCin;
 
 	/**
 	 * Launch the application.
@@ -38,7 +38,7 @@ public class VentanaInicial extends JFrame {
 	
 	public VentanaInicial()
 	{
-		sisCin = SistemaCine.getInstance();
+		//sisCin = SistemaCine.getInstance();
 		iniciarVentanaInicial();
 	}
 
@@ -60,8 +60,8 @@ public class VentanaInicial extends JFrame {
 			{
 				if(sisCin != null)
 				{
-					RegistrarVenta reg = new RegistrarVenta(sisCin);
-					reg.setVisible(true);
+					//RegistrarVenta reg = new RegistrarVenta(sisCin);
+					//reg.setVisible(true);
 		//			dispose();
 				}
 				else
@@ -74,8 +74,8 @@ public class VentanaInicial extends JFrame {
 		{
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				VentasAnteriores va = new VentasAnteriores(sisCin);
-				va.setVisible(true);
+				//VentasAnteriores va = new VentasAnteriores(sisCin);
+				//va.setVisible(true);
 			}
 		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);

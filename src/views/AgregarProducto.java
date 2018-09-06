@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import app.SistemaCine;
+import tda.TDASistemaCine;
 import bean.ProductoView;
 
 import javax.swing.GroupLayout;
@@ -20,6 +20,7 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
 
@@ -28,7 +29,7 @@ public class AgregarProducto extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtCantidad;
 	private JTextField txtPrecio;
-	private SistemaCine sisCin;
+	private TDASistemaCine sisCin;
 	private RegistrarVenta ref;
 	private ProductoView prod;
 
@@ -53,7 +54,7 @@ public class AgregarProducto extends JFrame {
 		iniciarAgregarProducto();
 	}
 	
-	public AgregarProducto(SistemaCine sc, RegistrarVenta r) 
+	public AgregarProducto(TDASistemaCine sc, RegistrarVenta r) 
 	{
 		sisCin = sc;
 		ref = r;
@@ -92,7 +93,13 @@ public class AgregarProducto extends JFrame {
 				{
 					cbProducto.removeAllItems();
 					txtPrecio.setText("");
-					vec = sisCin.getEntradas();
+					try 
+					{
+						vec = sisCin.getEntradas();
+					} catch (RemoteException e) 
+					{
+						e.printStackTrace();
+					}
 					for(int i = 0; i < vec.size(); i++)
 						cbProducto.addItem(vec.elementAt(i).getNombre());
 				}
@@ -100,7 +107,13 @@ public class AgregarProducto extends JFrame {
 				{
 					cbProducto.removeAllItems();
 					txtPrecio.setText("");
-					vec = sisCin.getAdicionales();
+					try 
+					{
+						vec = sisCin.getAdicionales();
+					} catch (RemoteException e) 
+					{
+						e.printStackTrace();
+					}
 					for(int i = 0; i < vec.size(); i++)
 						cbProducto.addItem(vec.elementAt(i).getNombre());	
 				}
@@ -108,7 +121,12 @@ public class AgregarProducto extends JFrame {
 				{
 					cbProducto.removeAllItems();
 					txtPrecio.setText("");
-					vec = sisCin.getCombos();
+					try {
+						vec = sisCin.getCombos();
+					} catch (RemoteException e) 
+					{
+						e.printStackTrace();
+					}
 					for(int i = 0; i < vec.size(); i++)
 						cbProducto.addItem(vec.elementAt(i).getNombre());
 				}
@@ -124,7 +142,13 @@ public class AgregarProducto extends JFrame {
 					String seleccion = cbProducto.getSelectedItem().toString();
 					//System.out.println(seleccion.substring(0,seleccion.indexOf(" ")));
 					int cod = Integer.parseInt(seleccion.substring(0,seleccion.indexOf(" ")));
-					prod = sisCin.getProducto(cod);
+					try 
+					{
+						prod = sisCin.getProducto(cod);
+					} catch (RemoteException e) 
+					{
+						e.printStackTrace();
+					}
 					txtPrecio.setText(prod.getPrecio().toString());
 					
 				}		
