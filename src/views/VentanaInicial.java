@@ -19,6 +19,10 @@ import java.awt.event.ActionEvent;
 
 public class VentanaInicial extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private TDASistemaCine sisCin;
 
@@ -50,7 +54,7 @@ public class VentanaInicial extends JFrame {
     public boolean getStub() {
     	
     	try {
-			sisCin = (TDASistemaCine)Naming.lookup ("//192.168.157.101/SistemaCine");
+			sisCin = (TDASistemaCine)Naming.lookup ("//localhost/SistemaCine");
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
