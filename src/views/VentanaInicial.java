@@ -40,7 +40,6 @@ public class VentanaInicial extends JFrame {
 	
 	public VentanaInicial()
 	{
-		
 		if(getStub())
 		{
 		//sisCin = SistemaCine.getInstance();
@@ -78,6 +77,7 @@ public class VentanaInicial extends JFrame {
 			{
 				if(sisCin != null)
 				{
+					/*
 					RegistrarVenta reg;
 					try {
 						reg = new RegistrarVenta(sisCin);
@@ -87,6 +87,14 @@ public class VentanaInicial extends JFrame {
 						e.printStackTrace();
 					}	
 		//			dispose();
+		 */
+
+					try {
+						System.out.println(sisCin.getEntradas().elementAt(0).getNombre());
+					} catch (RemoteException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 				else
 					JOptionPane.showMessageDialog(null, "Sistema sin instanciar");
