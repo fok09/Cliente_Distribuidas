@@ -86,15 +86,18 @@ public class VentasAnteriores extends JFrame {
 				dispose();
 			}
 		});
+		
+		table = new JTable();
+		scrollPane.setViewportView(table);
+		table.setModel(new DefaultTableModel(datosTabla, columnNames));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-						.addComponent(btnVolver)
-						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 515, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(scrollPane)
+						.addComponent(btnVolver, Alignment.TRAILING)))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -104,11 +107,7 @@ public class VentasAnteriores extends JFrame {
 					.addPreferredGap(ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
 					.addComponent(btnVolver))
 		);
-		
-		table = new JTable();
-		scrollPane.setViewportView(table);
 		contentPane.setLayout(gl_contentPane);
-		table.setModel(new DefaultTableModel(datosTabla, columnNames));
 		modeloTabla = (DefaultTableModel) table.getModel();
 	    modeloTabla.setDataVector(datosTabla, columnNames);
 	}
